@@ -40,8 +40,8 @@ The data in the dataset is already sorted by date and time. As the analysis for 
 
 providing a total of 2800 observations (69516-66637+1) for the two days with observations ranging from
 2007-02-01 00:00:00 to 2007-02-02 23:59:00 which gives exactly the same dataset as when
-reading in the whole dataset and then subsetting it to the dates 2007-02-01 and 2007-02-02. Each
-observation covers a measurement over one minute (2880 observations = 48 hours = 2 days).
+reading in the whole dataset and then subsetting it to the dates 2007-02-01 and 2007-02-02. The
+observations are given in 1-minute intervals (2880 observations = 48 hours = 2 days).
 
     dat<-read.table(datafile,sep=";",header=TRUE, na.strings="?", quote="",stringsAsFactors=FALSE)
     > match(as.Date("2007-02-01"),dat$Date)
@@ -78,7 +78,7 @@ reside. The data structure of the local working directory needs to contain the f
     plot3.R
     plot4.R
 
-Each script reads the 2880 observations from the dataset from 2007-02-01 00:00 to 2007-02-02 23:59 and plots the data into the requested graphs. Each script produces one graph. The graph is written as a png file with 480x480 pixels in the local working directory as
+Each script reads the 2880 observations from the dataset ranging from 2007-02-01 00:00 to 2007-02-02 23:59 in 1-minute intervals and plots the requested graphs. Each script produces one graph. The graph is written to a png file with 480x480 pixels in the local working directory as follows:
 
     plot1.R -> plot1.png
     plot2.R -> plot2.png

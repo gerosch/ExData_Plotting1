@@ -31,7 +31,7 @@ reside. The data structure of the local working directory needs to contain the f
     plot3.R
     plot4.R
 
-Each script reads the 2880 observations from the dataset from 2007-02-01 00:00 to 2007-02-02 23:59 and plots the data into the requested graphs. Each script produces one graph. The graph is written as a png file with 480x480 pixels in the local working directory as follows:
+Each script reads the 2880 observations from the dataset ranging from 2007-02-01 00:00 to 2007-02-02 23:59 in 1-minute intervals and plots the requested graphs. Each script produces one graph. The graph is written to a png file with 480x480 pixels in the local working directory as follows:
 
     plot1.R -> plot1.png
     plot2.R -> plot2.png
