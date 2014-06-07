@@ -27,6 +27,7 @@ The original dataset has 2,075,259 rows and 9 columns. A calculation of how much
 
 Reading the whole dataset into R and obtaining its actual object size using the command `object.size()` reveals a memory allocation of 142.65 MiB:
 
+
     dat<-read.table(datafile,sep=";",header=TRUE, na.strings="?", quote="",stringsAsFactors=FALSE)
     > object.size(dat)
     149581752 bytes
@@ -52,6 +53,33 @@ observations are given in 1-minute intervals (2880 observations = 48 hours = 2 d
     [1] 69517
     > 69517-66637
     [1] 2880
+
+The partial dataset limited to days 2007-02-01 and 2007-02-02 only requires an amount of memory of 283 kiB:
+
+    datnames<-names(read.table(datafile,sep=";",header=TRUE, na.strings="?", quote="",stringsAsFactors=FALSE, nrows=1))
+    > dat<-read.table(datafile,sep=";",header=TRUE, col.names=datnames,na.strings="?", quote="",stringsAsFactors=FALSE, skip=66636,nrows=2880)
+    > object.size(dat)
+    289824 bytes
+    
+    > head(dat,3)
+          Date     Time Global_active_power Global_reactive_power Voltage Global_intensity Sub_metering_1
+    1 1/2/2007 00:00:00               0.326                 0.128  243.15              1.4              0
+    2 1/2/2007 00:01:00               0.326                 0.130  243.32              1.4              0
+    3 1/2/2007 00:02:00               0.324                 0.132  243.51              1.4              0
+      Sub_metering_2 Sub_metering_3
+    1              0              0
+    2              0              0
+    3              0              0
+    > tail(dat,3)
+             Date     Time Global_active_power Global_reactive_power Voltage Global_intensity Sub_metering_1
+    2878 2/2/2007 23:57:00               3.684                 0.224  240.48             15.2              0
+    2879 2/2/2007 23:58:00               3.658                 0.220  239.61             15.2              0
+    2880 2/2/2007 23:59:00               3.680                 0.224  240.37             15.2              0
+         Sub_metering_2 Sub_metering_3
+    2878              1             18
+    2879              1             17
+    2880              2             18
+
 
 In order to convert the given Date and Time variables to a combined POSIX Date-Time class the `strptime()` and `as.Date()` functions are used. The data seems to be collected in France, so Central European Time (CET = UTC+01:00) is assumed for the date and time values.
 
