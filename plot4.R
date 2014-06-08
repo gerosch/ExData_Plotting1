@@ -30,8 +30,9 @@
 ## -----------------------------------------
 
 ### Path to data and output graphics
-datafile<-"household_power_consumption.txt"
-plotfile<-"plot4.png"
+fileUrl  <-"https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+datafile <-"household_power_consumption.txt"
+plotfile <-"plot4.png"
 
 ### Check for data directory and all required files
 
@@ -39,7 +40,18 @@ ALL_FOUND<-TRUE
 
 if (!file.exists(datafile)) {
   message("File <", datafile, "> not found in local directory.")
-  ALL_FOUND<-FALSE
+  message("Do you want to automatically download and unzip the file? (y=yes/n=no)")
+  ans<-readline()
+  if (ans=="y") {
+    message("Downloading data to local directory from ", fileUrl)
+    ## Download file
+    download.file(fileUrl, destfile = "./download.zip", method = "curl")
+    dateDownloaded<-date()
+    ## Unzip zip archive
+    unzip("download.zip")
+  } else {  
+    ALL_FOUND<-FALSE
+  }
 }
 if (ALL_FOUND==FALSE) {  
   message("Not all required files for the dataset were found in the local directory.")

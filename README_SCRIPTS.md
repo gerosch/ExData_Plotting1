@@ -31,6 +31,8 @@ reside. The data structure of the local working directory needs to contain the f
     plot3.R
     plot4.R
 
+Note that the script will ask the user to automatically download and unzip the data if the data is not present in the current working directory.
+
 Each script reads the 2880 observations from the dataset ranging from 2007-02-01 00:00 to 2007-02-02 23:59 in 1-minute intervals and plots the requested graphs. Each script produces one graph. The graph is written to a png file with 480x480 pixels in the local working directory as follows:
 
     plot1.R -> plot1.png
